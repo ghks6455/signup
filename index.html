@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery 속성선택자</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <!-- 이거 넣으면 개발자 도구에 아이콘 없다고 에러메세지 안 나옴 -->
+    <link rel="shortcut icon" href="#" />
+    <script>
+      $(document).ready(() => {
+        $("#submit").click("submit", (event) => {
+          event.preventDefault();
+          let name = $("#name").val();
+          $("#nameResult").text(`사용자 이름: ${name}`);
+          console.log(name);
+
+          let email = $("#email").val();
+          $("#emailResult").text(`이메일: ${email}`);
+          console.log(email);
+
+          let password = $("#password").val();
+          $("#passwordResult").text(`비밀번호: ${password}`);
+          console.log(password);
+
+          // 아이디 확인 메세지 출력
+          if ($("#name").val() == "") {
+            $(".code1").removeClass("hidden");
+          } else if ($("#name").val() != "") {
+            $(".code1").addClass("hidden");
+          }
+
+          // 이메일 확인 메세지 출력
+          if ($("#email").val() == "") {
+            $(".code2").removeClass("hidden");
+          } else if ($("#email").val() != "") {
+            $(".code2").addClass("hidden");
+          }
+
+          // 비밀번호 확인 메세지 출력
+          if ($("#password").val() == "") {
+            $(".code3").removeClass("hidden");
+          } else if ($("#password").val() != "") {
+            $(".code3").addClass("hidden");
+          }
+
+          // 비밀번호 재 입력 확인 메세지 출력
+          if ($("#passwordTry").val() == "") {
+            $(".code4").removeClass("hidden");
+          } else if ($("#passwordTry").val() != "") {
+            $(".code4").addClass("hidden");
+          }
+
+          // 비밀번호 입력 창과 비밀번호 확인 창의 값이 같지 않으면 메세지 출력
+          if ($("#password").val() != $("#passwordTry").val()) {
+            $(".code4").removeClass("hidden");
+          } else if ($("#password").val() == $("#passwordTry").val()) {
+            $(".code4").addClass("hidden");
+          }
+        });
+      });
+    </script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <!-- ## 필수 요소
+
+    1. 사용자 이름, 이메일 , 비밀번호, 비밀번호 확인, 회원가입 버튼 요소를 추가하세요.
+    2. 회원가입 버튼을 눌렀을때 입력된 데이터가 공백이거나 비어있을 경우 에러 문자 출력하세요.
+    3. 정확한 값이 입력되었다면 정보확인란에 입력받은 데이터를 보여주세요.
+    4. 깃허브에 코드를 업로드하고 배포합니다.
+
+    - **회원가입 버튼 이벤트는 `submit` 이벤트로 실행합니다.** -->
+
+  <body>
+    <div id="whiteboard">
+      <div class="signup-form">
+        <h2>회원가입</h2>
+        <form id="registerForm">
+          <p>사용자 이름</p>
+          <input type="text" name="name" id="name" />
+          <li class="error code1 hidden">사용자 이름이 입력되지 않았습니다.</li>
+          <p>이메일</p>
+          <input type="email" name="email" id="email" />
+          <li class="error code2 hidden">이메일이 입력되지 않았습니다..</li>
+          <p>비밀번호</p>
+          <input type="password" name="password" id="password" />
+          <li class="error code3 hidden">비밀번호가 입력되지 않았습니다.</li>
+          <p>비밀번호 확인</p>
+          <input type="password" name="passwordTry" id="passwordTry" />
+          <li class="error code4 hidden">
+            비밀번호 확인이 제대로 입력되지 않았습니다.
+          </li>
+          <input class="button" type="submit" name="submit" id="submit" />
+        </form>
+
+        <h3>회원가입 정보 확인</h3>
+        <br /><br />
+        <span id="nameResult">사용자 이름: </span> <br />
+        <span id="emailResult">이메일: </span> <br />
+        <span id="passwordResult">비밀번호: </span> <br />
+      </div>
+    </div>
+  </body>
+</html>

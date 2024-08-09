@@ -57,6 +57,12 @@ input {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.gender {
+  height: 14px;
+  width: 14px;
+  margin-bottom: 20px;
+}
+
 /* 버튼 스타일 */
 .button {
   width: 100%;
@@ -69,9 +75,20 @@ input {
   font-size: 18px;
 }
 
+/* 약관 동의 체크박스 */
+#checkbox {
+  height: 14px;
+  width: 14px;
+  margin-top: 20px;
+}
+
 /* 회원가입 정보 확인 텍스트 스타일 */
 h3 {
   font-size: 24px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: bolder;
+}
+
+#signUpData {
+  margin-bottom: 40px;
 }

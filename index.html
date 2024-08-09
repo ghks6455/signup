@@ -13,19 +13,40 @@
     <link rel="shortcut icon" href="#" />
     <script>
       $(document).ready(() => {
+        /* 회원가입 버튼을 누르면 이벤트 핸들러로 이벤트 뭐시기 */
         $("#submit").click("submit", (event) => {
+          // a태그나 form태그의 url이 바뀌는 이벤트를 제거
           event.preventDefault();
+
+          /* 입력 값 받아서 화면에 출력 */
           let name = $("#name").val();
           $("#nameResult").text(`사용자 이름: ${name}`);
-          console.log(name);
 
           let email = $("#email").val();
           $("#emailResult").text(`이메일: ${email}`);
-          console.log(email);
 
           let password = $("#password").val();
           $("#passwordResult").text(`비밀번호: ${password}`);
-          console.log(password);
+
+          /* 약관 동의 확인 체크박스 */
+
+          let signUp = $("#checkbox").is(":checked");
+          console.log(signUp);
+          if (signUp === false) {
+            alert("약관 동의를 해 주세요");
+          } else {
+            console.log("회원가입 성공");
+          }
+
+          /* 성별 메세지 출력 */
+          if ($("#gender1").is(":checked")) {
+            $("#genderResult").text(`성별: 남자`);
+            console.log("남자");
+          }
+          if ($("#gender2").is(":checked")) {
+            $("#genderResult").text(`성별: 여자`);
+            console.log("여자");
+          }
 
           // 아이디 확인 메세지 출력
           if ($("#name").val() == "") {
@@ -73,8 +94,16 @@
     3. 정확한 값이 입력되었다면 정보확인란에 입력받은 데이터를 보여주세요.
     4. 깃허브에 코드를 업로드하고 배포합니다.
 
-    - **회원가입 버튼 이벤트는 `submit` 이벤트로 실행합니다.** -->
+    - **회원가입 버튼 이벤트는 `submit` 이벤트로 실행합니다.**
+    
+    ## 추가 요소
 
+    1. 성별을 입력받고 정보확인란에 입력받은 데이터를 보여주세요.
+    2. 약관확인란에 마우스를 올렸을경우 약관에 대한 내용이 나오고 마우스가 벗어났을 경우 사라지게 하세요.
+    3. 약관동의 체크박스를 추가하고 체크되지 않았다면 `alert`을 띄워 에러메시지롤 출력하세요.
+    -->
+
+  /<!-- autocomplete를 사용 하여 자동입력 방지 -->
   <body>
     <div id="whiteboard">
       <div class="signup-form">
@@ -84,24 +113,84 @@
           <input type="text" name="name" id="name" />
           <li class="error code1 hidden">사용자 이름이 입력되지 않았습니다.</li>
           <p>이메일</p>
-          <input type="email" name="email" id="email" />
+          <input type="email" name="email" id="email" autocomplete="off" />
           <li class="error code2 hidden">이메일이 입력되지 않았습니다..</li>
           <p>비밀번호</p>
-          <input type="password" name="password" id="password" />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            autocomplete="new-password"
+          />
           <li class="error code3 hidden">비밀번호가 입력되지 않았습니다.</li>
           <p>비밀번호 확인</p>
-          <input type="password" name="passwordTry" id="passwordTry" />
+          <input
+            type="password"
+            name="passwordTry"
+            id="passwordTry"
+            autocomplete="new-password"
+          />
           <li class="error code4 hidden">
             비밀번호 확인이 제대로 입력되지 않았습니다.
           </li>
-          <input class="button" type="submit" name="submit" id="submit" />
+
+          <span
+            ><input
+              type="radio"
+              name="gender"
+              id="gender1"
+              class="gender"
+              checked
+            />남자</span
+          >
+          <span
+            ><input
+              type="radio"
+              name="gender"
+              id="gender2"
+              class="gender"
+            />여자</span
+          >
+          <li>
+            <a
+              href="#"
+              class="word"
+              title="서시
+
+          윤동주
+          
+          죽는 날까지 하늘을 우러러
+          한 점 부끄럼이 없기를,
+          잎새에 이는 바람에도
+          나는 괴로워했다.
+          
+          별을 노래하는 마음으로
+          모든 죽어가는 것을 사랑해야지
+          그리고 나한테 주어진 길을
+          걸어가야겠다.
+          
+          오늘 밤에도 별이 바람에 스치운다."
+              >약관확인</a
+            >
+          </li>
+
+          <input type="checkbox" id="checkbox" /> 약관에 동의합니다.
+
+          <input
+            class="button"
+            type="submit"
+            name="submit"
+            id="submit"
+            value="회원가입"
+          />
         </form>
 
-        <h3>회원가입 정보 확인</h3>
-        <br /><br />
+        <h3 id="signUpData">회원가입 정보 확인</h3>
+
         <span id="nameResult">사용자 이름: </span> <br />
         <span id="emailResult">이메일: </span> <br />
         <span id="passwordResult">비밀번호: </span> <br />
+        <span id="genderResult">성별: </span>
       </div>
     </div>
   </body>
